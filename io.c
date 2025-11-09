@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netinet/tcp.h>
 #include <net/if.h>
 #include <netdb.h>
 #include <errno.h>
@@ -57,7 +58,7 @@ static void new_player(int sock) {
 
     ioctl(nsock,FIONBIO,(u_long *)&one);     // non-blocking mode
 
-    //setsockopt(nsock,IPPROTO_TCP,TCP_NODELAY,(const char *)&one,sizeof(int));
+    setsockopt(nsock,IPPROTO_TCP,TCP_NODELAY,(const char *)&one,sizeof(int));
     //setsockopt(nsock,SOL_SOCKET,SO_LINGER,(const char *)&zero,sizeof(int));
     //setsockopt(nsock,SOL_SOCKET,SO_KEEPALIVE,(const char *)&one,sizeof(int));
 
