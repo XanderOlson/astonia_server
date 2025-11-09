@@ -103,7 +103,7 @@ int main(void) {
     }
 
     for (n=0; n<3; n++) {
-        create_weapon(dagger_name,desc[n],name[0],5*costtab[n],10170+n*10,basetab[n]-3,n,"V_DAGGER","IF_DAGGER",0);
+        create_weapon(dagger_name,desc[n],name[0],1000*costtab[n],10170+n*10,basetab[n]-3,n,"V_DAGGER","IF_DAGGER",0);
     }
 
     for (n=0; n<3; n++) {

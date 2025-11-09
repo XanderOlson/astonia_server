@@ -338,7 +338,7 @@ static void read_login(int nr) {
         show_clan_message(cn);
     } else ch[cn].flags&=~CF_AREACHANGE;
 
-    if (areaID==21) log_char(cn,LOG_SYSTEM,0,"°c3You have entered the test area. You cannot die here, but you can't earn experience either.");
+    if (areaID==21) log_char(cn,LOG_SYSTEM,0,"ï¿½c3You have entered the test area. You cannot die here, but you can't earn experience either.");
 
     buggy_items(cn);
     questlog_init(cn);
@@ -827,7 +827,7 @@ static void check_lag(int nr) {
 
     if ((ppd=set_data(cn,DRD_LOSTCON_PPD,sizeof(struct lostcon_ppd))) && ppd->maxlag) {
         val=ppd->maxlag*TICKS;
-    } else val=TICKS*10;
+    } else val=TICKS*60;
 
     if ((diff>val || (ch[cn].flags&CF_LAG)) && ch[cn].driver!=CDR_LOSTCON) {
         log_char(cn,LOG_SYSTEM,0,"Lag exceeds system limits. Auto-Control taking over.%s",
