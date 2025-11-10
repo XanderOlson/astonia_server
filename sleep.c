@@ -7,7 +7,6 @@
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <time.h>
 
 #include "server.h"
 #include "log.h"
@@ -15,7 +14,7 @@
 
 int cidle_avg=0;
 
-long long mono_us(void) {
+static inline long long mono_us(void) {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return (long long)ts.tv_sec*1000000LL + ts.tv_nsec/1000;
@@ -40,6 +39,7 @@ void tick_sleep(int show) {
 
         // robust nanosleep that handles signals
         while (nanosleep(&ts, &ts) == -1 && errno == EINTR) {}
+
         long long after = mono_us();
         diff = next - after; // negative if we overslept
     } else {
