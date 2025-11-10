@@ -52,7 +52,6 @@
 #include "punish.h"
 #include "skill.h"
 #include "talk.h"
-#include "sleep.h"
 #include "clan.h"
 #include "libload.h"
 #include "io.h"
@@ -157,7 +156,7 @@ int mysql_query_con(MYSQL *my,const char *query) {
     //xlog("size %d, query %.80s",strlen(query),query);
     //if (!demon && areaID==14) { int tmp; tmp=RANDOM(3); if (tmp) sleep(tmp); }
 
-    start=timel();
+    start=mono_us();
 
     while (1) {
         ret=mysql_query(my,query);
@@ -180,7 +179,7 @@ int mysql_query_con(MYSQL *my,const char *query) {
     db_raw+=strlen(query)+120;  // - we need to check for incoming results too!!!
 
     query_cnt++;
-    diff=timel()-start;
+    diff=mono_us()-start;
     query_time+=diff;
     if (diff>10000000) {
         query_long++;
@@ -1724,7 +1723,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000ï¿½c17%sï¿½c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items
