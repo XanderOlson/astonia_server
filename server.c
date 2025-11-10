@@ -521,7 +521,7 @@ void prof_stop(int task,unsigned long long cycle) {
 
     td=rdtsc()-cycle;
     if (td<0) { td=0; }
-    if (td>100000000000) { td=100000000000; }
+    if (td<0 || td>1000000000) { xlog("prof overflow %lld (%llu,%llu) %s %d",td,rdtsc(),cycle,profname[task],task); return; }
 
     if (task>=0 && task<100) {
         proftab[task].cycles+=td;

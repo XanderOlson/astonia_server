@@ -35,7 +35,7 @@
 #define RANDOM(a)	(rand()%(a))
 
 #define MAXMAP		256
-#define TOTAL_MAXCHARS	2048
+#define TOTAL_MAXCHARS	512
 #define MAXITEM		(maxitem)	//6144	//16384
 #define MAXCHARS	(maxchars)	//768	//2048		// MUST be a multiple of 8
 #define MAXEFFECT	(maxeffect)	//512	//1024
@@ -44,7 +44,7 @@
 #define MAXPASSWORD	16
 #define MAXEMAIL	80
 
-#define POWERSCALE	1000		// ch.hp = ch.value[0][V_HP] * POWERSCALE, same for endurance and mana
+#define POWERSCALE	10000		// ch.hp = ch.value[0][V_HP] * POWERSCALE, same for endurance and mana
 
 // define DIST if client.h wasn't loaded already
 #ifndef DIST
