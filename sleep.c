@@ -32,7 +32,7 @@ void tick_sleep(int show) {
 
     now = mono_us();
     tosleep = next - now;
-    xlog("ToSleep:%d", tosleep);
+    xlog("ToSleep:%d", tosleep)
     if (tosleep > MAX_SLEEP_US) tosleep = MAX_SLEEP_US;
 
     if (tosleep > 0) {
