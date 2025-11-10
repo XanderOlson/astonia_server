@@ -135,7 +135,7 @@ int skillmax(int cn) {
     if ((ch[cn].flags&(CF_WARRIOR|CF_MAGE))==(CF_WARRIOR|CF_MAGE)) seyan=1;
     else seyan=0;
 
-    return (seyan?100:115)+((ch[cn].flags&CF_HARDCORE)?7:0);
+    return (seyan?100:200)+((ch[cn].flags&CF_HARDCORE)?7:0);
 }
 
 int calc_exp(int cn) {
