@@ -76,8 +76,8 @@ int raise_cost(int v,int n,int seyan) {
 
     nr=n-skill[v].start+1+5;
 
-    if (seyan) return max(1,nr*nr*nr*skill[v].cost*4/30);
-    else return max(1,nr*nr*nr*skill[v].cost/10);
+    if (seyan) return max(1,nr*nr*skill[v].cost*4/30);
+    else return max(1,nr*nr*skill[v].cost/10);
 }
 
 int supermax_canraise(int skl) {
@@ -135,7 +135,7 @@ int skillmax(int cn) {
     if ((ch[cn].flags&(CF_WARRIOR|CF_MAGE))==(CF_WARRIOR|CF_MAGE)) seyan=1;
     else seyan=0;
 
-    return (seyan?100:115)+((ch[cn].flags&CF_HARDCORE)?7:0);
+    return (seyan?100:200)+((ch[cn].flags&CF_HARDCORE)?7:0);
 }
 
 int calc_exp(int cn) {
