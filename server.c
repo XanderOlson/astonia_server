@@ -383,8 +383,7 @@ int main(int argc,char *args[]) {
         unlock_server();
 
         sprintf(args[0],"./server -a %d -m %d -i %d # %d on %d%% load (idle)",areaID,areaM,serverID,online,(10000-server_idle)/100);
-        
-        // This is the idle process.
+
         prof=prof_start(1); tick_sleep(0); prof_stop(1,prof);
 
         ticker++;
