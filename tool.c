@@ -96,7 +96,6 @@ int speed(int speedy,int mode,int ticks) {
 
     if (f<0.2) f=0.2;
     if (f>2.0) f=2.0;
-
     if (mode==SM_FAST) f*=2.0;
 
     ticks/=f;
@@ -120,7 +119,6 @@ int speed2(int speedy,int mode,int ticks) {
 
     if (f<0.2) f=0.2;
     if (f>2.0) f=2.0;
-
     if (mode==SM_FAST) f*=2.0;
 
     ticks=ceil(ticks*f);
