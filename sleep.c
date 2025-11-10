@@ -34,9 +34,6 @@ void tick_sleep(int show) {
     now=timel();
     tosleep=next-now;
 
-    // clamp sleep to prevent long stalls if clock jumps
-    if (tosleep > MAX_SLEEP_US) tosleep = MAX_SLEEP_US;
-    
     // sleep while idle
     if (tosleep>0) {
         tv.tv_usec=tosleep%1000000;
@@ -46,7 +43,6 @@ void tick_sleep(int show) {
         // how long did we REALLY sleep? (tends to be too long)
         now=timel();
         diff=next-now;
-        xlog("diff=%lld",diff);
     } else { tosleep=0; diff=0; }
 
     // update statistics
