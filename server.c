@@ -360,6 +360,7 @@ int main(int argc,char *args[]) {
             call_stat_update();
             read_motd();
             reinit_log();
+            xlog("Ticker=%d,",ticker);
         }
 
         if ((ticker&255)==0) {
@@ -378,7 +379,6 @@ int main(int argc,char *args[]) {
             consistency_check_chars();
             consistency_check_containers();
             prof_stop(38,prof);
-            xlog("Ticker=%d,",ticker);
         }
 
         unlock_server();
