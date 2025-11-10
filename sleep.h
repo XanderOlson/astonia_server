@@ -12,8 +12,8 @@ Added RCS tags
 
 */
 
-#define MAX_SLEEP_US 50000
+#define MAX_SLEEP_US 100000
 
 extern int cidle_avg;
 void tick_sleep(int show_idle);
-long long timel(void);
+long long mono_us(void);
