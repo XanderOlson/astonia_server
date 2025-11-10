@@ -97,6 +97,8 @@ int speed(int speedy,int mode,int ticks) {
     if (f<0.2) f=0.2;
     if (f>2.0) f=2.0;
 
+    if (mode==SM_FAST) f*=2.0;
+
     ticks/=f;
 
     if (ticks<2) return 2;
@@ -118,6 +120,8 @@ int speed2(int speedy,int mode,int ticks) {
 
     if (f<0.2) f=0.2;
     if (f>2.0) f=2.0;
+
+    if (mode==SM_FAST) f*=2.0;
 
     ticks=ceil(ticks*f);
 
@@ -851,7 +855,7 @@ int check_levelup(int cn) {
         }
 
         if (ch[cn].level%10==0) {
-            sprintf(buf,"0000000000캽10Grats: %s is level %d now!",ch[cn].name,ch[cn].level);
+            sprintf(buf,"0000000000째c10Grats: %s is level %d now!",ch[cn].name,ch[cn].level);
             server_chat(6,buf);
         }
 
@@ -1033,25 +1037,25 @@ int look_item(int cn,struct item *in,int slot) {
 
     if (ch[cn].flags&CF_PLAYER) {
         nr=ch[cn].player;
-        if (get_player_protocol(nr)>0) log_char(cn,LOG_SYSTEM,0,"같캧TEMDESC%04d같�",slot);
+        if (get_player_protocol(nr)>0) log_char(cn,LOG_SYSTEM,0,"째째째ITEMDESC%04d째째째",slot);
     }
 
-    log_char(cn,LOG_SYSTEM,0,"캽5%s:",in->name);
+    log_char(cn,LOG_SYSTEM,0,"째c5%s:",in->name);
     if (in->description[0]) log_char(cn,LOG_SYSTEM,0,"%s",in->description);
     if (in->ID==IID_HARDKILL) log_char(cn,LOG_SYSTEM,0,"This is a level %d holy weapon.",in->drdata[37]);
 
     for (n=0; n<MAXMOD; n++) {
         if ((v=in->mod_value[n]) && (s=in->mod_index[n])>-1) {
             if (!m) {
-                log_char(cn,LOG_SYSTEM,0,"캽5Modifiers:");
+                log_char(cn,LOG_SYSTEM,0,"째c5Modifiers:");
                 m=1;
             }
             if (in->driver==IDR_DECAYITEM) {
                 log_char(cn,LOG_SYSTEM,0,"%s +%d (active: %+d)",skill[s].name,v,in->drdata[2]);
             } else {
                 if (ch[cn].flags&CF_GOD) {
-                    if (s==V_ARMOR) log_char(cn,LOG_SYSTEM,0,"%s %+.2f 캽1(%d: %d+%d)",skill[s].name,v/20.0,n,s,v);
-                    else log_char(cn,LOG_SYSTEM,0,"%s %+d 캽1(%d: %d+%d)",skill[s].name,v,n,s,v);
+                    if (s==V_ARMOR) log_char(cn,LOG_SYSTEM,0,"%s %+.2f 째c1(%d: %d+%d)",skill[s].name,v/20.0,n,s,v);
+                    else log_char(cn,LOG_SYSTEM,0,"%s %+d 째c1(%d: %d+%d)",skill[s].name,v,n,s,v);
                 } else {
                     if (s==V_ARMOR) log_char(cn,LOG_SYSTEM,0,"%s %+.2f",skill[s].name,v/20.0);
                     else log_char(cn,LOG_SYSTEM,0,"%s %+d",skill[s].name,v);
@@ -1063,14 +1067,14 @@ int look_item(int cn,struct item *in,int slot) {
     for (n=0; n<MAXMOD; n++) {
         if ((v=in->mod_value[n]) && (s=in->mod_index[n])<0) {
             if (!r) {
-                log_char(cn,LOG_SYSTEM,0,"캽5Requirements:");
+                log_char(cn,LOG_SYSTEM,0,"째c5Requirements:");
                 r=1;
             }
             log_char(cn,LOG_SYSTEM,0,"%s %d (you have %d)",skill[-s].name,v,ch[cn].value[1][-s]);
         }
     }
     if (!r && (in->min_level || in->max_level || in->needs_class)) {
-        log_char(cn,LOG_SYSTEM,0,"캽5Requirements:");
+        log_char(cn,LOG_SYSTEM,0,"째c5Requirements:");
         r=1;
     }
     if (in->min_level) log_char(cn,LOG_SYSTEM,0,"Minimum Level: %d",in->min_level);
@@ -1124,7 +1128,7 @@ int look_item(int cn,struct item *in,int slot) {
 
     if (slot!=-1 && (ch[cn].flags&CF_PLAYER)) {
         nr=ch[cn].player;
-        if (get_player_protocol(nr)>0) log_char(cn,LOG_SYSTEM,0,"캽5.");
+        if (get_player_protocol(nr)>0) log_char(cn,LOG_SYSTEM,0,"째c5.");
     }
 
     return 1;
@@ -1937,8 +1941,8 @@ void shutdown_warn(void) {
 
     min=(shutdown_at-realtime+50)/60;
     if (min!=shutdown_last) {
-        if (min>0) sprintf(buf,"캽3The server will go down in %d minute%s. Expected downtime: %d minutes.",min,min>1?"s":"",shutdown_down);
-        else sprintf(buf,"캽3The server will go down NOW. Expected downtime: %d minutes.",shutdown_down);
+        if (min>0) sprintf(buf,"째c3The server will go down in %d minute%s. Expected downtime: %d minutes.",min,min>1?"s":"",shutdown_down);
+        else sprintf(buf,"째c3The server will go down NOW. Expected downtime: %d minutes.",shutdown_down);
         for (n=1; n<MAXCHARS; n++) {
             if (!(ch[n].flags&CF_PLAYER)) continue;
             log_char(n,LOG_SYSTEM,0,"%s",buf);
@@ -1963,7 +1967,7 @@ void shutdown_bg(int t,int down) {
 
         for (n=1; n<MAXCHARS; n++) {
             if (!(ch[n].flags&CF_PLAYER)) continue;
-            log_char(n,LOG_SYSTEM,0,"캽3Shutdown has been cancelled.");
+            log_char(n,LOG_SYSTEM,0,"째c3Shutdown has been cancelled.");
         }
     }
 }
@@ -2055,7 +2059,7 @@ void give_military_pts(int cn,int co,int pts,int exps) {
         say(cn,"You've been promoted to %s. Congratulations, %s!",get_army_rank_string(co),ch[co].name);
 #pragma GCC diagnostic pop        
         if (get_army_rank_int(co)>9) {
-            sprintf(buf,"0000000000캽10Grats: %s is a %s now!",ch[co].name,get_army_rank_string(co));
+            sprintf(buf,"0000000000째c10Grats: %s is a %s now!",ch[co].name,get_army_rank_string(co));
             server_chat(6,buf);
         }
 
@@ -2078,7 +2082,7 @@ void give_military_pts_no_npc(int co,int pts,int exps) {
         set_army_rank(co,rank);
         log_char(co,LOG_SYSTEM,0,"You've been promoted to %s!",get_army_rank_string(co));
         if (get_army_rank_int(co)>9) {
-            sprintf(buf,"0000000000캽10Grats: %s is a %s now!",ch[co].name,get_army_rank_string(co));
+            sprintf(buf,"0000000000째c10Grats: %s is a %s now!",ch[co].name,get_army_rank_string(co));
             server_chat(6,buf);
         }
     }
