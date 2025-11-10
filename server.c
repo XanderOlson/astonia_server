@@ -360,7 +360,6 @@ int main(int argc,char *args[]) {
             call_stat_update();
             read_motd();
             reinit_log();
-            xlog("Ticker=%d,",ticker)
         }
 
         if ((ticker&255)==0) {
