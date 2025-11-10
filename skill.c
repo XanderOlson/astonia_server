@@ -12,15 +12,15 @@
 struct skill skill[V_MAX]={
     //  Bases          Cost W M (0=not raisable, 1=skill, 2=attribute, 3=power)
     // Powers
-    {"Hitpoints",-1,-1,-1,3,10},    // 0		done
-    {"Endurance",-1,-1,-1,3,10},    // 1		done
-    {"Mana",-1,-1,-1,3,10},    // 2		done
+    {"Hitpoints",-1,-1,-1,1,10},    // 0		done
+    {"Endurance",-1,-1,-1,1,100},    // 1		done
+    {"Mana",-1,-1,-1,1,100},    // 2		done
 
     // Attributes
-    {"Wisdom",-1,-1,-1,2,10},    // 3		done
-    {"Intuition",-1,-1,-1,2,10},    // 4		done
-    {"Agility",-1,-1,-1,2,10},    // 5		done
-    {"Strength",-1,-1,-1,2,10},    // 6		done
+    {"Wisdom",-1,-1,-1,1,20},    // 3		done
+    {"Intuition",-1,-1,-1,1,20},    // 4		done
+    {"Agility",-1,-1,-1,1,40},    // 5		done
+    {"Strength",-1,-1,-1,1,20},    // 6		done
 
     // Values
     {"Armor",-1,-1,-1,0,0},    // 7		done
