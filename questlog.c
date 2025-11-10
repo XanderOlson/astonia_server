@@ -175,16 +175,16 @@ void questlog_close(int cn,int qnr) {
 int questlog_scale(int cnt,int ex) {
     switch (cnt) {
         case 0:		return ex;
-        case 1:		return ex*82/100;
-        case 2:		return ex*68/100;
-        case 3:		return ex*56/100;
-        case 4:		return ex*46/100;
-        case 5:		return ex*38/100;
-        case 6:		return ex*32/100;
-        case 7:		return ex*26/100;
-        case 8:		return ex*21/100;
-        case 9:		return ex*18/100;
-        default:	return ex*15/100;
+        case 1:		return ex*150/100;
+        case 2:		return ex*150/100;
+        case 3:		return ex*150/100;
+        case 4:		return ex*150/100;
+        case 5:		return ex*150/100;
+        case 6:		return ex*150/100;
+        case 7:		return ex*150/100;
+        case 8:		return ex*150/100;
+        case 9:		return ex*150/100;
+        default:	return ex*150/100;
     }
 }
 
@@ -206,10 +206,10 @@ int questlog_done(int cn,int qnr) {
     val=questlog_scale(cnt,questlog[qnr].exp);
 
     // scale down by level for those rushing ahead
-    if (ch[cn].level>44) val=min(level_value(ch[cn].level)/6,val);
-    else if (ch[cn].level>19) val=min(level_value(ch[cn].level)/4,val);
-    else if (ch[cn].level>4) val=min(level_value(ch[cn].level)/2,val);
-    else val=min(level_value(ch[cn].level),val);
+    if (ch[cn].level>44) val=val;
+    else if (ch[cn].level>19) val=val;
+    else if (ch[cn].level>4) val=val;
+    else val=val;
 
     give_exp(cn,val);
     if (questlog[qnr].exp>0) dlog(cn,0,"Received %d exp for doing quest %s for the %d. time (nominal value %d exp)",val,questlog[qnr].name,(cnt+1),questlog[qnr].exp);

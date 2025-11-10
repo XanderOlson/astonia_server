@@ -445,7 +445,7 @@ void smugglecom_driver(int cn,int ret,int lastact) {
 
                     val=questlog_scale(questlog_count(co,36),1000);
                     dlog(cn,0,"Received %d exp for doing quest Contraband I for the %d. time (nominal value %d exp)",val,questlog_count(co,36)+1,1000);
-                    give_exp(co,min(val,level_value(ch[co].level)/4));
+                    give_exp(co,val);
 
                     ppd->smugglecom_bits|=SMUGGLEBIT_PEARLS;
                 } else if (it[in].ID==IID_STAFF_SMUGGLERING && ppd && !(ppd->smugglecom_bits&SMUGGLEBIT_RING) && (ch[co].flags&CF_PLAYER)) {
@@ -453,7 +453,7 @@ void smugglecom_driver(int cn,int ret,int lastact) {
 
                     val=questlog_scale(questlog_count(co,36),1000);
                     dlog(cn,0,"Received %d exp for doing quest Contraband II for the %d. time (nominal value %d exp)",val,questlog_count(co,36)+1,1000);
-                    give_exp(co,min(val,level_value(ch[co].level)/4));
+                    give_exp(co,val);
 
                     ppd->smugglecom_bits|=SMUGGLEBIT_RING;
                 } else if (it[in].ID==IID_STAFF_SMUGGLECAPE && ppd && !(ppd->smugglecom_bits&SMUGGLEBIT_CAPE) && (ch[co].flags&CF_PLAYER)) {
@@ -461,7 +461,7 @@ void smugglecom_driver(int cn,int ret,int lastact) {
 
                     val=questlog_scale(questlog_count(co,36),1000);
                     dlog(cn,0,"Received %d exp for doing quest Contraband III for the %d. time (nominal value %d exp)",val,questlog_count(co,36)+1,1000);
-                    give_exp(co,min(val,level_value(ch[co].level)/4));
+                    give_exp(co,val);
 
                     ppd->smugglecom_bits|=SMUGGLEBIT_CAPE;
                 } else if (it[in].ID==IID_STAFF_SMUGGLENECKLACE && ppd && !(ppd->smugglecom_bits&SMUGGLEBIT_NECKLACE) && (ch[co].flags&CF_PLAYER)) {
@@ -469,7 +469,7 @@ void smugglecom_driver(int cn,int ret,int lastact) {
 
                     val=questlog_scale(questlog_count(co,36),1000);
                     dlog(cn,0,"Received %d exp for doing quest Contraband IV for the %d. time (nominal value %d exp)",val,questlog_count(co,36)+1,1000);
-                    give_exp(co,min(val,level_value(ch[co].level)/4));
+                    give_exp(co,val);
 
                     ppd->smugglecom_bits|=SMUGGLEBIT_NECKLACE;
                 } else {
