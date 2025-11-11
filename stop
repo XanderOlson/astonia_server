@@ -1,0 +1,20 @@
+#!/bin/sh
+
+echo "Stopping Astonia daemons..."
+
+# Try to stop all area servers started via ./start
+if pkill -INT -f "./server -a" >/dev/null 2>&1; then
+    echo "Sent SIGINT to all area server processes."
+else
+    echo "No area server processes were found."
+fi
+
+# Stop the chatserver if it is running
+if pkill -INT -f "./chatserver" >/dev/null 2>&1; then
+    echo "Sent SIGINT to chatserver."
+fi
+
+# Give the processes a moment to exit and report remaining ones
+sleep 1
+echo "Remaining server processes:"
+ps -ef | grep "./server -a" | grep -v grep || true
