@@ -219,7 +219,7 @@ int main(int argc,char *args[]) {
 
     // set character number limit depending on area
     switch (areaID) {
-        case 1:		maxchars=8; break;
+        case 1:		maxchars=512; break;
         case 2:		maxchars=896; break;
         case 3:		maxchars=384; break;
         case 4:		maxchars=2048; break;
