@@ -517,11 +517,12 @@ void penter(int cn,int ret,int lastact) {
     struct msg *msg,*next;
     int n,in=0,prob,p;
 
-    if (ch[cn].level<=38) prob=2000;
-    else if (ch[cn].level<=70) prob=1000;
-    // max ice pents: 102
-    // max hell pents: 118
-    else prob=666;
+    // if (ch[cn].level<=38) prob=2000;
+    // else if (ch[cn].level<=70) prob=1000;
+    // // max ice pents: 102
+    // // max hell pents: 118
+    // else prob=666;
+    prob=10;
 
     // loop through our messages
     for (msg=ch[cn].msg; msg; msg=next) {
@@ -531,59 +532,60 @@ void penter(int cn,int ret,int lastact) {
             case NT_CREATE:
                 demoncnt++;
                 if (demoncnt>prob && !ch[cn].item[30]) {
-                    p=RANDOM(1000);
-                    if (p<100) {
-                        n=RANDOM(12);
-                        if (ch[cn].level<=38) {
-                            switch (n) {
-                                case 0: in=create_item("demon_sleeves1"); break;
-                                case 1: in=create_item("demon_leggings1"); break;
-                                case 2: in=create_item("demon_helmet1"); break;
-                                case 3: in=create_item("demon_armor1"); break;
-                                case 4: in=create_item("demon_bracelet1"); break;
-                                case 5: in=create_item("demon_hat1"); break;
-                                case 6: in=create_item("demon_trousers1"); break;
-                                case 7: in=create_item("demon_vest1"); break;
-                                case 8: in=create_item("demon_cape1"); break;
-                                case 9: in=create_item("demon_cape1"); break;
-                                case 10: in=create_item("demon_boots1"); break;
-                                case 11: in=create_item("demon_boots1"); break;
+                    // p=RANDOM(1000);
+                    // if (p<100) {
+                    n=RANDOM(13);
+                        // if (ch[cn].level<=38) {
+                        //     switch (n) {
+                        //         case 0: in=create_item("demon_sleeves1"); break;
+                        //         case 1: in=create_item("demon_leggings1"); break;
+                        //         case 2: in=create_item("demon_helmet1"); break;
+                        //         case 3: in=create_item("demon_armor1"); break;
+                        //         case 4: in=create_item("demon_bracelet1"); break;
+                        //         case 5: in=create_item("demon_hat1"); break;
+                        //         case 6: in=create_item("demon_trousers1"); break;
+                        //         case 7: in=create_item("demon_vest1"); break;
+                        //         case 8: in=create_item("demon_cape1"); break;
+                        //         case 9: in=create_item("demon_cape1"); break;
+                        //         case 10: in=create_item("demon_boots1"); break;
+                        //         case 11: in=create_item("demon_boots1"); break;
 
-                            }
-                        } else if (ch[cn].level<=70) {
-                            switch (n) {
-                                case 0: in=create_item("demon_sleeves2"); break;
-                                case 1: in=create_item("demon_leggings2"); break;
-                                case 2: in=create_item("demon_helmet2"); break;
-                                case 3: in=create_item("demon_armor2"); break;
-                                case 4: in=create_item("demon_bracelet2"); break;
-                                case 5: in=create_item("demon_hat2"); break;
-                                case 6: in=create_item("demon_trousers2"); break;
-                                case 7: in=create_item("demon_vest2"); break;
-                                case 8: in=create_item("demon_cape2"); break;
-                                case 9: in=create_item("demon_cape2"); break;
-                                case 10: in=create_item("demon_boots2"); break;
-                                case 11: in=create_item("demon_boots2"); break;
-                            }
-                        } else {
-                            switch (n) {
-                                case 0: in=create_item("demon_sleeves3"); break;
-                                case 1: in=create_item("demon_leggings3"); break;
-                                case 2: in=create_item("demon_helmet3"); break;
-                                case 3: in=create_item("demon_armor3"); break;
-                                case 4: in=create_item("demon_bracelet3"); break;
-                                case 5: in=create_item("demon_hat3"); break;
-                                case 6: in=create_item("demon_trousers3"); break;
-                                case 7: in=create_item("demon_vest3"); break;
-                                case 8: in=create_item("demon_cape3"); break;
-                                case 9: in=create_item("demon_cape3"); break;
-                                case 10: in=create_item("demon_boots3"); break;
-                                case 11: in=create_item("demon_boots3"); break;
-                            }
-                        }
-                    } else if (p<900) in=create_item("bronzechip");
-                    else if (p<990) in=create_item("silverchip");
-                    else in=create_item("goldchip");
+                        //     }
+                        // } else if (ch[cn].level<=70) {
+                        //     switch (n) {
+                        //         case 0: in=create_item("demon_sleeves2"); break;
+                        //         case 1: in=create_item("demon_leggings2"); break;
+                        //         case 2: in=create_item("demon_helmet2"); break;
+                        //         case 3: in=create_item("demon_armor2"); break;
+                        //         case 4: in=create_item("demon_bracelet2"); break;
+                        //         case 5: in=create_item("demon_hat2"); break;
+                        //         case 6: in=create_item("demon_trousers2"); break;
+                        //         case 7: in=create_item("demon_vest2"); break;
+                        //         case 8: in=create_item("demon_cape2"); break;
+                        //         case 9: in=create_item("demon_cape2"); break;
+                        //         case 10: in=create_item("demon_boots2"); break;
+                        //         case 11: in=create_item("demon_boots2"); break;
+                        //     }
+                        // } else {
+                    switch (n) {
+                        case 0: in=create_item("demon_sleeves3"); break;
+                        case 1: in=create_item("demon_leggings3"); break;
+                        case 2: in=create_item("demon_helmet3"); break;
+                        case 3: in=create_item("demon_armor3"); break;
+                        case 4: in=create_item("demon_bracelet3"); break;
+                        case 5: in=create_item("demon_hat3"); break;
+                        case 6: in=create_item("demon_trousers3"); break;
+                        case 7: in=create_item("demon_vest3"); break;
+                        case 8: in=create_item("demon_cape3"); break;
+                        case 9: in=create_item("demon_cape3"); break;
+                        case 10: in=create_item("demon_boots3"); break;
+                        case 11: in=create_item("demon_boots3"); break;
+                        case 12: in=create_item("goldchip"); break;
+                    }
+                    // }
+                    // } else if (p<900) in=create_item("bronzechip");
+                    // else if (p<990) in=create_item("silverchip");
+                    // else in=create_item("goldchip");
 
                     if (in) {
                         it[in].carried=cn;
