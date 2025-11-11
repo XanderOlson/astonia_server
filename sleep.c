@@ -33,6 +33,11 @@ void tick_sleep(int show) {
 
     now=timel();
     tosleep=next-now;
+    if (tosleep>2*TICK) {    // clamp runaway sleeps caused by wall-clock jumps
+        xlog("tick_sleep: drift of %lldus detected, clamping",tosleep);
+        next=now+TICK;
+        tosleep=TICK;
+    }
 
     // sleep while idle
     if (tosleep>0) {
