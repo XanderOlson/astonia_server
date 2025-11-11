@@ -7,13 +7,10 @@ sleep 1
 
 # Start all the areas
 ./server -a 1 -d
-# sleep 1
-# ./server -a 2 -d
 sleep 1
-# Add Labs
-./server -a 4 -d
+./server -a 2 -d
 sleep 1
-./server -a 22 -d
+./server -a 3 -d
 # ... add them all here for a full server
 
 echo Done
