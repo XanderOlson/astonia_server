@@ -515,7 +515,7 @@ void pentboss_door_driver(int in,int cn) {
 
 void penter(int cn,int ret,int lastact) {
     struct msg *msg,*next;
-    int n,in=0,prob,p;
+    int n,in=0,prob;
 
     // if (ch[cn].level<=38) prob=2000;
     // else if (ch[cn].level<=70) prob=1000;
