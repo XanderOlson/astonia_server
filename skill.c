@@ -182,7 +182,7 @@ int raise_value(int cn,int v) {
     }*/
 
     if (seyan && ch[cn].value[1][v]>99+hardcore) return 0;
-    if (ch[cn].value[1][v]>114+hardcore) return 0;
+    if (ch[cn].value[1][v]>199+hardcore) return 0;
 
     if (v==V_PROFESSION && ch[cn].value[1][v]>99) return 0;
 
@@ -246,7 +246,7 @@ int raise_value_exp(int cn,int v) {
     }*/
 
     if (seyan && ch[cn].value[1][v]>99+hardcore) return 0;
-    if (ch[cn].value[1][v]>114+hardcore) return 0;
+    if (ch[cn].value[1][v]>199+hardcore) return 0;
 
     if (v==V_PROFESSION && ch[cn].value[1][v]>99) return 0;
 
