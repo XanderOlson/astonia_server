@@ -1556,7 +1556,7 @@ void update_char(int cn) {
     }
 
     if (ch[cn].value[1][V_SPEEDSKILL]) ch[cn].value[0][V_SPEED]+=ch[cn].value[0][V_SPEEDSKILL]/2;
-    if (ch[cn].prof[P_ATHLETE]) ch[cn].value[0][V_SPEED]+=ch[cn].prof[P_ATHLETE]*3;
+    if (ch[cn].prof[P_ATHLETE]) ch[cn].value[0][V_SPEED]+=ch[cn].prof[P_ATHLETE]*6;
     if (ch[cn].prof[P_THIEF]) {
         if (ch[cn].flags&CF_THIEFMODE) ch[cn].value[0][V_STEALTH]+=ch[cn].prof[P_THIEF]*2;
         else ch[cn].value[0][V_STEALTH]+=ch[cn].prof[P_THIEF];
