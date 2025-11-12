@@ -47,38 +47,39 @@ sleep 1
 ./server -a 20 -d
 sleep 1
 ./server -a 21 -d
+# Dont need the Labs server anymore - already Arch
+# sleep 1
+# ./server -a 22 -d
 sleep 1
-./server -a 22 -d
-# sleep 1
-# ./server -a 23 -d
-# sleep 1
-# ./server -a 24 -d
-# sleep 1
-# ./server -a 25 -d
-# sleep 1
-# ./server -a 26 -d
+./server -a 23 -d
+sleep 1
+./server -a 24 -d
+sleep 1
+./server -a 25 -d
+sleep 1
+./server -a 26 -d
 # sleep 1
 # ./server -a 27 -d
-# sleep 1
-# ./server -a 28 -d
-# sleep 1
-# ./server -a 29 -d
-# sleep 1
-# ./server -a 30 -d
-# sleep 1
-# ./server -a 31 -d
-# sleep 1
-# ./server -a 32 -d
-# sleep 1
-# ./server -a 33 -d
-# sleep 1
-# ./server -a 34 -d
-# sleep 1
-# ./server -a 35 -d
-# sleep 1
-# ./server -a 36 -d
-# sleep 1
-# ./server -a 37 -d
+sleep 1
+./server -a 28 -d
+sleep 1
+./server -a 29 -d
+sleep 1
+./server -a 30 -d
+sleep 1
+./server -a 31 -d
+sleep 1
+./server -a 32 -d
+sleep 1
+./server -a 33 -d
+sleep 1
+./server -a 34 -d
+sleep 1
+./server -a 35 -d
+sleep 1
+./server -a 36 -d
+sleep 1
+./server -a 37 -d
 # ... add them all here for a full server
 
 echo Done
