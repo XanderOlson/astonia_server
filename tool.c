@@ -1641,6 +1641,10 @@ int create_special_item(int strength,int base,int potionprob,int maxchance) {
     int type,len,priceadd=0;
     char *str_desc;
 
+    // Cap the chances
+    if (maxchance >= 10) maxchance=10;
+    strength=20;
+
     if (RANDOM(potionprob)) {
         strength+=RANDOM(4);
         if (strength<6) n=1;
@@ -1708,7 +1712,7 @@ int create_special_item(int strength,int base,int potionprob,int maxchance) {
     else if (strength==5) strength=lowhi_random(5);
     else if (strength==6) strength=lowhi_random(6);
     else if (strength==7) strength=lowhi_random(7);
-    else strength=strength-7+lowhi_random(7);
+    else strength=strength-3+lowhi_random(3);
 
     switch (strength) {
         case 1:		str_desc="Extremely Weak "; priceadd+=200; break;
