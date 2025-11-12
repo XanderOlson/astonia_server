@@ -140,27 +140,42 @@ void minewall(int in,int cn) {
             it[in].flags|=IF_VOID;
             call_item(it[in].driver,in,0,ticker+TICKS*60*5+RANDOM(TICKS*60*25));
 
-            if (!RANDOM(15)) {
-                in2=create_item("silver");
-                if (!in2) elog("silver not found");
+            amount=0;
+            in2=0;
 
-                amount=RANDOM(it[in].drdata[0]*2+1)+it[in].drdata[0];
-                //xlog("amount=%d",amount);
-                if (ch[cn].prof[P_MINER]) amount+=amount*ch[cn].prof[P_MINER]/10;
-                //xlog("amount=%d",amount);
-                if (!amount && in2) {
-                    destroy_item(in2);
-                }
-            } else if (!RANDOM(50)) {
+            if (!RANDOM(2)) {
                 in2=create_item("gold");
-                if (!in2) elog("gold not found");
-
-                amount=RANDOM(it[in].drdata[1]*2+1)+it[in].drdata[1];
-                if (ch[cn].prof[P_MINER]) amount+=amount*ch[cn].prof[P_MINER]/10;
-                if (!amount && in2) {
-                    destroy_item(in2);
+                if (!in2) {
+                    elog("gold not found");
                 }
-            } else amount=in2=0;
+                if (in2) {
+                    amount=RANDOM(it[in].drdata[1]*2+1)+it[in].drdata[1];
+                    amount*=100;
+                    if (ch[cn].prof[P_MINER]) amount+=amount*ch[cn].prof[P_MINER]/10;
+                    if (!amount) {
+                        destroy_item(in2);
+                        amount=0;
+                        in2=0;
+                    }
+                }
+            }
+
+            if (!in2 && !amount && !RANDOM(2)) {
+                in2=create_item("silver");
+                if (!in2) {
+                    elog("silver not found");
+                }
+                if (in2) {
+                    amount=RANDOM(it[in].drdata[0]*2+1)+it[in].drdata[0];
+                    amount*=100;
+                    if (ch[cn].prof[P_MINER]) amount+=amount*ch[cn].prof[P_MINER]/10;
+                    if (!amount) {
+                        destroy_item(in2);
+                        amount=0;
+                        in2=0;
+                    }
+                }
+            }
 
             if (amount && in2) {
                 it[in2].value*=amount;
