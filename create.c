@@ -911,7 +911,7 @@ int create_char_nr(int ctmp,int tmpa) {
         }
     }
     for (m=0,f=30; m<MAXRANDITEM; m++) {
-        if ((itmp=ch_temp[ctmp].rand_item[m]) && RANDOM(200)<ch_temp[ctmp].rand_prob[m]) {
+        if ((itmp=ch_temp[ctmp].rand_item[m]) && RANDOM(10000)<ch_temp[ctmp].rand_prob[m]) {
             in=create_item_nr(itmp);
             if (!in) {
                 elog("create_char(): create_item_nr() failed.");
