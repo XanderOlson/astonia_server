@@ -35,7 +35,7 @@
 #define RANDOM(a)	(rand()%(a))
 
 #define MAXMAP		256
-#define TOTAL_MAXCHARS	512
+#define TOTAL_MAXCHARS	2048
 #define MAXITEM		(maxitem)	//6144	//16384
 #define MAXCHARS	(maxchars)	//768	//2048		// MUST be a multiple of 8
 #define MAXEFFECT	(maxeffect)	//512	//1024
