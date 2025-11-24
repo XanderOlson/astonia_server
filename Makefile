@@ -35,6 +35,12 @@ DDFLAGS=-O $(DEBUG) -m32 -fPIC -shared
 DFLAGS=$(CFLAGS) -m32 -fPIC
 DATE=`date +%y%m%d%H`
 
+UNITY_DIR=tests/unity
+TEST_BIN=tests/test_runner
+TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/error.o
+TEST_CFLAGS=$(filter-out -m32,$(CFLAGS))
+TEST_LDFLAGS=$(filter-out -m32,$(LDRFLAGS))
+
 OBJS=.obj/server.o .obj/io.o .obj/libload.o .obj/tool.o .obj/sleep.o \
 .obj/log.o .obj/create.o .obj/notify.o .obj/skill.o .obj/do.o \
 .obj/act.o .obj/player.o .obj/rdtsc.o .obj/los.o .obj/light.o \
@@ -682,6 +688,29 @@ create_character:	create_character.c
 
 # ------- Helper -----
 
+.PHONY: test
+test: $(TEST_BIN)
+	./$(TEST_BIN)
+
+$(TEST_BIN): $(TEST_OBJS)
+	$(CC) $(TEST_LDFLAGS) -o $(TEST_BIN) $(TEST_OBJS)
+
+.obj/test/unity.o: $(UNITY_DIR)/unity.c $(UNITY_DIR)/unity.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/unity.o -c $(UNITY_DIR)/unity.c
+
+.obj/test/test_main.o: tests/test_main.c $(UNITY_DIR)/unity.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_main.o -c tests/test_main.c
+
+.obj/test/test_error.o: tests/test_error.c error.h $(UNITY_DIR)/unity.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_error.o -c tests/test_error.c
+
+.obj/test/error.o: error.c error.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -o .obj/test/error.o -c error.c
+
 clean:
-	-rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character
+	-rm server .obj/*.o .obj/test/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character $(TEST_BIN)
 
