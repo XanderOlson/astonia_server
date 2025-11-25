@@ -1,0 +1,31 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install test dependencies
+        run: |
+          sudo apt-get update
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y gcc-multilib make pkg-config lib32z-dev libmysqlclient-dev:i386 mariadb-server
+
+      - name: Run tests
+        run: make test
+
+      - name: Upload test runner artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-runner
+          path: tests/test_runner
+          if-no-files-found: ignore
