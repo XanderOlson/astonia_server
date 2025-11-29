@@ -44,7 +44,7 @@
 #define MAXPASSWORD	16
 #define MAXEMAIL	80
 
-#define POWERSCALE	10000		// ch.hp = ch.value[0][V_HP] * POWERSCALE, same for endurance and mana
+#define POWERSCALE	1000		// ch.hp = ch.value[0][V_HP] * POWERSCALE, same for endurance and mana
 
 // define DIST if client.h wasn't loaded already
 #ifndef DIST
