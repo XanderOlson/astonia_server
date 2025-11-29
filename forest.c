@@ -351,12 +351,12 @@ void william_driver(int cn,int ret,int lastact) {
                         questlog_open(co,22);
                         ppd->william_state++; didsay=1;
                         break;
-                    case 1:		say(cn,"The °c4imp°c0 asked me to tell you to go east and then northeast and hunt some bears.");
+                    case 1:		say(cn,"The ï¿½c4impï¿½c0 asked me to tell you to go east and then northeast and hunt some bears.");
                         ppd->william_state++; didsay=1;
                         break;
                     case 2:		break;  // waiting for imp
                     case 3:		if (questlog_isdone(co,23)) { ppd->william_state=7; break; }
-                        say(cn,"Ah, hello %s. The °c4imp°c0 told me thou hast done him a favor. That's nice of thee.",ch[co].name);
+                        say(cn,"Ah, hello %s. The ï¿½c4impï¿½c0 told me thou hast done him a favor. That's nice of thee.",ch[co].name);
                         questlog_open(co,23);
                         ppd->william_state++; didsay=1;
                         break;
@@ -585,7 +585,7 @@ void monster_dead(int cn,int co) {
 
     if (ch[co].x>=182 && ch[co].y>=185 && ch[co].x<=192 && ch[co].y<=192) bit=8;
 
-    if (hour==0 && bit && (in=ch[co].item[WN_RHAND]) && it[in].driver==0 && !(it[in].drdata[36]&bit)) {
+    if (hour>=0 && hour<=16 && bit && (in=ch[co].item[WN_RHAND]) && it[in].driver==0 && !(it[in].drdata[36]&bit)) {
         it[in].ID=IID_HARDKILL;
         it[in].drdata[37]+=6;
         it[in].drdata[36]|=bit;
