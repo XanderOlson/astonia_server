@@ -61,7 +61,7 @@ int buyprice(int cn,int in) {
     if (in<1 || in>=MAXITEM) { error=ERR_ILLEGAL_ITEMNO; return 0; }
 
     price=it[in].value;
-    if (!(it[in].flags&IF_MONEY)) price=min(price*0.80,price*(double)(ch[cn].value[0][V_BARTER]+100+ch[cn].prof[P_TRADER]*5+clan_trade_bonus(cn))/400);
+    if (!(it[in].flags&IF_MONEY)) price=min(price*10,price*(double)(ch[cn].value[0][V_BARTER]+100+ch[cn].prof[P_TRADER]*5+clan_trade_bonus(cn))/400);
 
     return price;
 }
