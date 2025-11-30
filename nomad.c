@@ -245,7 +245,7 @@ int nomad_1(int cn,int co,struct nomad_ppd *ppd,int nr) {
         case 3:		say(cn,"We are fierce warriors, and our shaman's magic is deadly. Each tribe of the Vana Laka is loyal only to its members, and, to a certain degree, to the members of the other tribes.");
             ppd->nomad_state[nr]++;
             return 1;
-        case 4:		say(cn,"Those who are tribe-less will have a hard time finding trade partners, or opponents for 캽4Llakal Sla캽0.");
+        case 4:		say(cn,"Those who are tribe-less will have a hard time finding trade partners, or opponents for 째c4Llakal Sla째c0.");
             ppd->nomad_state[nr]++;
             return 1;
         case 5:		say(cn,"If thou wishest to earn membership in my tribe, the Vana Kiru, thou must prove thy worth to us. Collect 100 ounces of salt and hand them to me, and I will welcome thee to the Vana Kiru.");
@@ -277,7 +277,7 @@ int nomad_2(int cn,int co,struct nomad_ppd *ppd,int nr) {
             say(cn,"Sul vana ley, %s. I am %s.",ch[co].name,ch[cn].name);
             ppd->nomad_state[nr]++;
             return 1;
-        case 1:		say(cn,"I have a nice collection of dice. I'd sell thee a set of 캽4cheap dice캽0 for 200 ounces of salt, or a set of 캽4mediocre dice캽0 for 500 ounces, or a set of 캽4 good dice캽0 for 1200 ounces.");
+        case 1:		say(cn,"I have a nice collection of dice. I'd sell thee a set of 째c4cheap dice째c0 for 200 ounces of salt, or a set of 째c4mediocre dice째c0 for 500 ounces, or a set of 째c4 good dice째c0 for 1200 ounces.");
             ppd->nomad_state[nr]++;
             return 1;
         case 2:         return 0; // finished
@@ -296,7 +296,7 @@ int nomad_3(int cn,int co,struct nomad_ppd *ppd,int nr) {
             say(cn,"Sul vana ley, %s. I am %s.",ch[co].name,ch[cn].name);
             ppd->nomad_state[nr]++;
             return 1;
-        case 1:		say(cn,"Would you like a game of 캽4Llakal Sla캽0?");
+        case 1:		say(cn,"Would you like a game of 째c4Llakal Sla째c0?");
             ppd->nomad_state[nr]++;
             return 1;
         case 2:         return 0;   // finished
@@ -367,7 +367,7 @@ int nomad_6(int cn,int co,struct nomad_ppd *ppd,int nr) {
             say(cn,"Sul vana ley, %s. I am %s.",ch[co].name,ch[cn].name);
             ppd->nomad_state[nr]++;
             return 1;
-        case 1:		say(cn,"Wouldst thou like to buy a 캽4golden statue캽0? I shall give it to thee for only 10000 ounces of salt!");
+        case 1:		say(cn,"Wouldst thou like to buy a 째c4golden statue째c0? I shall give it to thee for only 10000 ounces of salt!");
             ppd->nomad_state[nr]++;
             return 1;
         case 2:         return 0;   // finished
@@ -527,6 +527,7 @@ int nomad_1_give(int cn,int co,int in,struct nomad_ppd *ppd,int nr) {
         cnt=*(unsigned int *)(it[in].drdata);
         if (it[in].ID==IID_AREA19_WOLFSSKIN) val=cnt*5;
         else val=cnt*20;
+        val+=100;
 
         in2=create_item("salt");
         if (!in2) {
