@@ -37,7 +37,7 @@ DATE=`date +%y%m%d%H`
 
 UNITY_DIR=tests/unity
 TEST_BIN=tests/test_runner
-TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/test_los.o .obj/test/error.o .obj/test/los.o
+TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/test_los.o .obj/test/test_mine.o .obj/test/error.o .obj/test/los.o .obj/test/mine_payout.o
 TEST_CFLAGS=$(filter-out -m32,$(CFLAGS))
 TEST_LDFLAGS=$(filter-out -m32,$(LDRFLAGS))
 
@@ -588,13 +588,16 @@ runtime/20/lq.dll:	.obj/lq.o
 .obj/lq.o:	lq.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lq.o -c lq.c
 
-runtime/generic/mine.dll:	.obj/mine.o
-	$(CC) $(DDFLAGS) -o mine.tmp .obj/mine.o
+runtime/generic/mine.dll:	.obj/mine.o .obj/mine_payout.o
+	$(CC) $(DDFLAGS) -o mine.tmp .obj/mine.o .obj/mine_payout.o
 	@mkdir -p runtime/generic
 	@mv mine.tmp runtime/generic/mine.dll
 
-.obj/mine.o:	mine.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
+.obj/mine.o:	mine.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h mine.h
 	$(CC) $(DFLAGS) -o .obj/mine.o -c mine.c
+
+.obj/mine_payout.o:	mine_payout.c mine.h
+	$(CC) $(DFLAGS) -o .obj/mine_payout.o -c mine_payout.c
 
 runtime/22/lab1.dll:		.obj/lab1.o
 	$(CC) $(DDFLAGS) -o lab1.tmp .obj/lab1.o
@@ -711,6 +714,10 @@ $(TEST_BIN): $(TEST_OBJS)
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_los.o -c tests/test_los.c
 
+.obj/test/test_mine.o: tests/test_mine.c mine.h mine_payout.c $(UNITY_DIR)/unity.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_mine.o -c tests/test_mine.c
+
 .obj/test/error.o: error.c error.h
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -o .obj/test/error.o -c error.c
@@ -718,6 +725,10 @@ $(TEST_BIN): $(TEST_OBJS)
 .obj/test/los.o: los.c server.h
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -DUNIT_TEST -o .obj/test/los.o -c los.c
+
+.obj/test/mine_payout.o: mine_payout.c mine.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -o .obj/test/mine_payout.o -c mine_payout.c
 
 clean:
 	-rm server .obj/*.o .obj/test/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character $(TEST_BIN)
