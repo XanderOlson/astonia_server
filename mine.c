@@ -145,7 +145,7 @@ void minewall(int in,int cn) {
             in2=0;
 
             if (!amount) {
-                int gold_amount=compute_mine_payout(MINE_METAL_GOLD,it[in].drdata,ch[cn].prof[P_MINER],RANDOM(2),RANDOM(it[in].drdata[MINE_DRDATA_GOLD]*2+1));
+                int gold_amount=compute_mine_payout(MINE_METAL_GOLD,it[in].drdata,ch[cn].prof[P_MINER],RANDOM(10),RANDOM(it[in].drdata[MINE_DRDATA_GOLD]*2+1));
 
                 if (gold_amount) {
                     in2=create_item("gold");
@@ -157,7 +157,7 @@ void minewall(int in,int cn) {
             }
 
             if (!in2 && !amount) {
-                int silver_amount=compute_mine_payout(MINE_METAL_SILVER,it[in].drdata,ch[cn].prof[P_MINER],RANDOM(2),RANDOM(it[in].drdata[MINE_DRDATA_SILVER]*2+1));
+                int silver_amount=compute_mine_payout(MINE_METAL_SILVER,it[in].drdata,ch[cn].prof[P_MINER],RANDOM(10),RANDOM(it[in].drdata[MINE_DRDATA_SILVER]*2+1));
 
                 if (silver_amount) {
                     in2=create_item("silver");
