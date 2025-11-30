@@ -1,3 +1,37 @@
+#ifdef UNIT_TEST
+
+#include "server.h"
+
+extern struct map *map;
+
+static int dodoors=0,doorx,doory;
+
+static inline int check_map(int x,int y) {
+    int m;
+
+    if (x<1 || x>=MAXMAP || y<1 || y>=MAXMAP) return 0;
+
+    m=x+y*MAXMAP;
+
+    if (dodoors && (map[m].flags&MF_DOOR) && (x!=doorx || y!=doory)) return 1;
+
+    if (map[m].flags&(MF_SIGHTBLOCK|MF_TSIGHTBLOCK)) return 0;
+
+    return 1;
+}
+
+int test_check_map(int x,int y) {
+    return check_map(x,y);
+}
+
+void test_set_door_context(int enable,int x,int y) {
+    dodoors=enable;
+    doorx=x;
+    doory=y;
+}
+
+#else
+
 /*
  * Part of Astonia Server (c) Daniel Brockhaus. Please read license.txt.
  */
@@ -252,3 +286,6 @@ int los_can_see2(int cn,int sx,int sy,int tx,int ty,int maxdist)
 
     return 42;
 }*/
+
+#endif
+
