@@ -37,7 +37,7 @@ DATE=`date +%y%m%d%H`
 
 UNITY_DIR=tests/unity
 TEST_BIN=tests/test_runner
-TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/error.o
+TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/test_los.o .obj/test/error.o .obj/test/los.o
 TEST_CFLAGS=$(filter-out -m32,$(CFLAGS))
 TEST_LDFLAGS=$(filter-out -m32,$(LDRFLAGS))
 
@@ -707,9 +707,17 @@ $(TEST_BIN): $(TEST_OBJS)
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_error.o -c tests/test_error.c
 
+.obj/test/test_los.o: tests/test_los.c server.h los.c $(UNITY_DIR)/unity.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_los.o -c tests/test_los.c
+
 .obj/test/error.o: error.c error.h
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -o .obj/test/error.o -c error.c
+
+.obj/test/los.o: los.c server.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -DUNIT_TEST -o .obj/test/los.o -c los.c
 
 clean:
 	-rm server .obj/*.o .obj/test/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character $(TEST_BIN)
