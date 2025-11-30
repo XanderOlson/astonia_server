@@ -35,6 +35,7 @@
 #include "player_driver.h"
 #include "military.h"
 #include "consistency.h"
+#include "mine.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -143,37 +144,27 @@ void minewall(int in,int cn) {
             amount=0;
             in2=0;
 
-            if (!RANDOM(2)) {
-                in2=create_item("gold");
-                if (!in2) {
-                    elog("gold not found");
-                }
-                if (in2) {
-                    amount=RANDOM(it[in].drdata[1]*2+1)+it[in].drdata[1];
-                    amount*=100;
-                    if (ch[cn].prof[P_MINER]) amount+=amount*ch[cn].prof[P_MINER]/10;
-                    if (!amount) {
-                        destroy_item(in2);
-                        amount=0;
-                        in2=0;
+            if (!amount) {
+                int gold_amount=compute_mine_payout(MINE_METAL_GOLD,it[in].drdata,ch[cn].prof[P_MINER],RANDOM(2),RANDOM(it[in].drdata[MINE_DRDATA_GOLD]*2+1));
+
+                if (gold_amount) {
+                    in2=create_item("gold");
+                    if (!in2) {
+                        elog("gold not found");
                     }
+                    if (in2) amount=gold_amount; else gold_amount=0;
                 }
             }
 
-            if (!in2 && !amount && !RANDOM(2)) {
-                in2=create_item("silver");
-                if (!in2) {
-                    elog("silver not found");
-                }
-                if (in2) {
-                    amount=RANDOM(it[in].drdata[0]*2+1)+it[in].drdata[0];
-                    amount*=100;
-                    if (ch[cn].prof[P_MINER]) amount+=amount*ch[cn].prof[P_MINER]/10;
-                    if (!amount) {
-                        destroy_item(in2);
-                        amount=0;
-                        in2=0;
+            if (!in2 && !amount) {
+                int silver_amount=compute_mine_payout(MINE_METAL_SILVER,it[in].drdata,ch[cn].prof[P_MINER],RANDOM(2),RANDOM(it[in].drdata[MINE_DRDATA_SILVER]*2+1));
+
+                if (silver_amount) {
+                    in2=create_item("silver");
+                    if (!in2) {
+                        elog("silver not found");
                     }
+                    if (in2) amount=silver_amount;
                 }
             }
 
