@@ -19,7 +19,7 @@ int compute_mine_payout(int metal_type,unsigned char *drdata,int miner_prof_bonu
     if (amount_roll>=range) amount_roll%=range;
 
     amount=amount_roll+base;
-    amount*=100;
+    amount*=10;
 
     if (miner_prof_bonus) amount+=amount*miner_prof_bonus/10;
 
