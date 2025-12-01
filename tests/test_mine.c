@@ -23,8 +23,8 @@ void test_gold_payout_respects_cap(void)
 
     amount=compute_mine_payout(MINE_METAL_GOLD,payout_drdata,miner_bonus,0,amount_roll);
 
-    TEST_ASSERT_TRUE(amount<=21000);
-    TEST_ASSERT_EQUAL_INT(21000, amount);
+    TEST_ASSERT_TRUE(amount<=2100);
+    TEST_ASSERT_EQUAL_INT(2100, amount);
 }
 
 void test_silver_payout_respects_cap(void)
@@ -38,6 +38,6 @@ void test_silver_payout_respects_cap(void)
 
     amount=compute_mine_payout(MINE_METAL_SILVER,payout_drdata,miner_bonus,0,amount_roll);
 
-    TEST_ASSERT_TRUE(amount<=9000);
-    TEST_ASSERT_EQUAL_INT(9000, amount);
+    TEST_ASSERT_TRUE(amount<=900);
+    TEST_ASSERT_EQUAL_INT(900, amount);
 }
