@@ -76,8 +76,8 @@ int raise_cost(int v,int n,int seyan) {
 
     nr=n-skill[v].start+1+5;
 
-    if (seyan) return max(1,nr*nr*skill[v].cost*4/30);
-    else return max(1,nr*nr*skill[v].cost/10);
+    if (seyan) return max(1,nr*nr*nr*skill[v].cost*4/30);
+    else return max(1,nr*nr*nr*skill[v].cost/10);
 }
 
 int supermax_canraise(int skl) {
