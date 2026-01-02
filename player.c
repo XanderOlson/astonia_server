@@ -718,7 +718,7 @@ static void cl_raise(int nr,char *buf) {
 
     cn=player[nr]->cn;
 
-    raise_value(cn,n);
+    raise_value_player(cn,n);
 }
 
 static void cl_text(int nr,char *buf) {
@@ -2543,7 +2543,6 @@ int get_player_protocol(int nr) {
 
     return player[nr]->client_version;
 }
-
 
 
 
