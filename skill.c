@@ -239,12 +239,6 @@ int raise_value_npc(int cn,int v) {
     return 1;
 }
 
-// raise value v of cn by 1, does error checking
-int raise_value(int cn,int v) {
-    if (ch[cn].flags&CF_PLAYER) return raise_value_player(cn,v);
-    return raise_value_npc(cn,v);
-}
-
 // lower value v of cn by 1, does error checking
 int lower_value(int cn,int v) {
     int cost,seyan;
