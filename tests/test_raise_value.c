@@ -7,7 +7,7 @@
 int raise_value_player(int cn,int v);
 int raise_value_npc(int cn,int v);
 
-static struct character test_chars[MAXCHARS];
+static struct character test_chars[TOTAL_MAXCHARS];
 struct character *ch=test_chars;
 
 void update_char(int cn)
@@ -48,8 +48,8 @@ void test_raise_value_player_spends_exp(void)
 
     TEST_ASSERT_EQUAL_INT(1, raise_value_player(cn,v));
     TEST_ASSERT_EQUAL_INT(2, ch[cn].value[1][v]);
-    TEST_ASSERT_EQUAL_UINT(exp, ch[cn].exp);
-    TEST_ASSERT_EQUAL_UINT(cost, ch[cn].exp_used);
+    TEST_ASSERT_EQUAL_INT((int)exp, (int)ch[cn].exp);
+    TEST_ASSERT_EQUAL_INT(cost, (int)ch[cn].exp_used);
 }
 
 void test_raise_value_player_rejects_insufficient_exp(void)
@@ -65,7 +65,7 @@ void test_raise_value_player_rejects_insufficient_exp(void)
 
     TEST_ASSERT_EQUAL_INT(0, raise_value_player(cn,v));
     TEST_ASSERT_EQUAL_INT(1, ch[cn].value[1][v]);
-    TEST_ASSERT_EQUAL_UINT(0, ch[cn].exp_used);
+    TEST_ASSERT_EQUAL_INT(0, (int)ch[cn].exp_used);
 }
 
 void test_raise_value_npc_grants_exp(void)
@@ -81,6 +81,6 @@ void test_raise_value_npc_grants_exp(void)
 
     TEST_ASSERT_EQUAL_INT(1, raise_value_npc(cn,v));
     TEST_ASSERT_EQUAL_INT(2, ch[cn].value[1][v]);
-    TEST_ASSERT_EQUAL_UINT(cost, ch[cn].exp);
-    TEST_ASSERT_EQUAL_UINT(cost, ch[cn].exp_used);
+    TEST_ASSERT_EQUAL_INT(cost, (int)ch[cn].exp);
+    TEST_ASSERT_EQUAL_INT(cost, (int)ch[cn].exp_used);
 }
