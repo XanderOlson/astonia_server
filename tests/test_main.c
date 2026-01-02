@@ -13,10 +13,15 @@ void test_check_map_accepts_clear_tile(void);
 void test_check_map_handles_doors_when_enabled(void);
 void test_gold_payout_respects_cap(void);
 void test_silver_payout_respects_cap(void);
+void reset_raise_value_state(void);
+void test_raise_value_player_spends_exp(void);
+void test_raise_value_player_rejects_insufficient_exp(void);
+void test_raise_value_npc_grants_exp(void);
 
 void setUp(void) {
     reset_check_map_state();
     reset_mine_state();
+    reset_raise_value_state();
 }
 
 void tearDown(void) {
@@ -36,6 +41,9 @@ int main(void) {
     RUN_TEST(test_check_map_handles_doors_when_enabled);
     RUN_TEST(test_gold_payout_respects_cap);
     RUN_TEST(test_silver_payout_respects_cap);
+    RUN_TEST(test_raise_value_player_spends_exp);
+    RUN_TEST(test_raise_value_player_rejects_insufficient_exp);
+    RUN_TEST(test_raise_value_npc_grants_exp);
 
     return UNITY_END();
 }

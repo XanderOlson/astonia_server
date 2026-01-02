@@ -37,7 +37,7 @@ DATE=`date +%y%m%d%H`
 
 UNITY_DIR=tests/unity
 TEST_BIN=tests/test_runner
-TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/test_los.o .obj/test/test_mine.o .obj/test/error.o .obj/test/los.o .obj/test/mine_payout.o
+TEST_OBJS=.obj/test/unity.o .obj/test/test_main.o .obj/test/test_error.o .obj/test/test_los.o .obj/test/test_mine.o .obj/test/test_raise_value.o .obj/test/error.o .obj/test/los.o .obj/test/mine_payout.o .obj/test/skill.o
 TEST_CFLAGS=$(filter-out -m32,$(CFLAGS))
 TEST_LDFLAGS=$(filter-out -m32,$(LDRFLAGS))
 
@@ -717,6 +717,9 @@ $(TEST_BIN): $(TEST_OBJS)
 .obj/test/test_mine.o: tests/test_mine.c mine.h mine_payout.c $(UNITY_DIR)/unity.h
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_mine.o -c tests/test_mine.c
+.obj/test/test_raise_value.o: tests/test_raise_value.c server.h skill.h $(UNITY_DIR)/unity.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -I$(UNITY_DIR) -o .obj/test/test_raise_value.o -c tests/test_raise_value.c
 
 .obj/test/error.o: error.c error.h
 	@mkdir -p .obj/test
@@ -729,7 +732,9 @@ $(TEST_BIN): $(TEST_OBJS)
 .obj/test/mine_payout.o: mine_payout.c mine.h
 	@mkdir -p .obj/test
 	$(CC) $(TEST_CFLAGS) -o .obj/test/mine_payout.o -c mine_payout.c
+.obj/test/skill.o: skill.c server.h create.h database.h log.h tool.h skill.h
+	@mkdir -p .obj/test
+	$(CC) $(TEST_CFLAGS) -o .obj/test/skill.o -c skill.c
 
 clean:
 	-rm server .obj/*.o .obj/test/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character $(TEST_BIN)
-
