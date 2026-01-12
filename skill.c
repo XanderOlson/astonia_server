@@ -164,7 +164,7 @@ int raise_value_player(int cn,int v) {
     int cost,seyan;
     int hardcore=0;
 
-    if (v<0 || v>V_MAX) return 0;
+    if (v<0 || v>=V_MAX) return 0;
 
     if (!skill[v].cost) return 0;
 
@@ -243,7 +243,7 @@ int raise_value_npc(int cn,int v) {
 int lower_value(int cn,int v) {
     int cost,seyan;
 
-    if (v<0 || v>V_MAX) return 0;
+    if (v<0 || v>=V_MAX) return 0;
 
     if (!skill[v].cost) return 0;
 
@@ -268,7 +268,7 @@ int raise_value_exp(int cn,int v) {
     int cost,seyan;
     int hardcore=0;
 
-    if (v<0 || v>V_MAX) return 0;
+    if (v<0 || v>=V_MAX) return 0;
 
     if (!skill[v].cost) return 0;
 

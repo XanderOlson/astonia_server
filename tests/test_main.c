@@ -17,6 +17,7 @@ void reset_raise_value_state(void);
 void test_raise_value_player_spends_exp(void);
 void test_raise_value_player_rejects_insufficient_exp(void);
 void test_raise_value_npc_grants_exp(void);
+void test_raise_value_rejects_vmax(void);
 
 void setUp(void) {
     reset_check_map_state();
@@ -44,6 +45,7 @@ int main(void) {
     RUN_TEST(test_raise_value_player_spends_exp);
     RUN_TEST(test_raise_value_player_rejects_insufficient_exp);
     RUN_TEST(test_raise_value_npc_grants_exp);
+    RUN_TEST(test_raise_value_rejects_vmax);
 
     return UNITY_END();
 }
