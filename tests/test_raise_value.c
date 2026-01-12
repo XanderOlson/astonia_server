@@ -84,3 +84,21 @@ void test_raise_value_npc_grants_exp(void)
     TEST_ASSERT_EQUAL_INT(cost, (int)ch[cn].exp);
     TEST_ASSERT_EQUAL_INT(cost, (int)ch[cn].exp_used);
 }
+
+void test_raise_value_rejects_vmax(void)
+{
+    int cn=4;
+    int v=V_DAGGER;
+    unsigned int exp=250;
+    unsigned int exp_used=25;
+
+    ch[cn].flags=CF_PLAYER;
+    ch[cn].value[1][v]=1;
+    ch[cn].exp=exp;
+    ch[cn].exp_used=exp_used;
+
+    TEST_ASSERT_EQUAL_INT(0, raise_value(cn,V_MAX));
+    TEST_ASSERT_EQUAL_INT(1, ch[cn].value[1][v]);
+    TEST_ASSERT_EQUAL_INT((int)exp, (int)ch[cn].exp);
+    TEST_ASSERT_EQUAL_INT((int)exp_used, (int)ch[cn].exp_used);
+}
