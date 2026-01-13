@@ -227,9 +227,9 @@ int raise_value_npc(int cn,int v) {
     if (v==V_PROFESSION && ch[cn].value[1][v]>99) return 0;
 
     cost=raise_cost(v,ch[cn].value[1][v],seyan);
-    if (ch[cn].exp_used+cost>ch[cn].exp) return 0;
 
     ch[cn].exp_used+=cost;
+    ch[cn].exp+=cost;
 
     ch[cn].value[1][v]++;
 
@@ -237,12 +237,6 @@ int raise_value_npc(int cn,int v) {
     dlog(cn,0,"raised %s to %d",skill[v].name,ch[cn].value[1][v]);
 
     return 1;
-}
-
-// raise value v of cn by 1, does error checking
-int raise_value(int cn,int v) {
-    if (ch[cn].flags&CF_PLAYER) return raise_value_player(cn,v);
-    return raise_value_npc(cn,v);
 }
 
 // lower value v of cn by 1, does error checking
