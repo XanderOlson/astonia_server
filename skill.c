@@ -160,7 +160,7 @@ int calc_exp(int cn) {
 }
 
 // raise value v of cn by 1, does error checking
-int raise_value(int cn,int v) {
+int raise_value_player(int cn,int v) {
     int cost,seyan;
     int hardcore=0;
 
@@ -190,6 +190,46 @@ int raise_value(int cn,int v) {
     if (ch[cn].exp_used+cost>ch[cn].exp) return 0;
 
     ch[cn].exp_used+=cost;
+
+    ch[cn].value[1][v]++;
+
+    update_char(cn);
+    dlog(cn,0,"raised %s to %d",skill[v].name,ch[cn].value[1][v]);
+
+    return 1;
+}
+
+// raise value v of cn by 1, does error checking
+int raise_value_npc(int cn,int v) {
+    int cost,seyan;
+    int hardcore=0;
+
+    if (v<0 || v>V_MAX) return 0;
+
+    if (!skill[v].cost) return 0;
+
+    if (!ch[cn].value[1][v]) return 0;
+
+    if (!(ch[cn].flags&CF_ARCH) && ch[cn].value[1][v]>49) return 0;
+
+    if ((ch[cn].flags&(CF_WARRIOR|CF_MAGE))==(CF_WARRIOR|CF_MAGE)) seyan=1;
+    else seyan=0;
+
+    if (ch[cn].flags&CF_HARDCORE) hardcore=7;
+    /*{
+        if (seyan) hardcore=5;
+        else hardcore=7;
+    }*/
+
+    if (seyan && ch[cn].value[1][v]>99+hardcore) return 0;
+    if (ch[cn].value[1][v]>499+hardcore) return 0;
+
+    if (v==V_PROFESSION && ch[cn].value[1][v]>99) return 0;
+
+    cost=raise_cost(v,ch[cn].value[1][v],seyan);
+
+    ch[cn].exp_used+=cost;
+    ch[cn].exp+=cost;
 
     ch[cn].value[1][v]++;
 
@@ -263,4 +303,3 @@ int raise_value_exp(int cn,int v) {
 
     return 1;
 }
-

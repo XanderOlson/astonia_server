@@ -23,7 +23,8 @@ struct skill
 extern struct skill skill[];
 
 int raise_cost(int v,int n,int seyan);
-int raise_value(int cn,int v);
+int raise_value_player(int cn,int v);
+int raise_value_npc(int cn,int v);
 int skillmax(int cn);
 int supermax_canraise(int skl);
 int supermax_cost(int cn,int skl,int val);
