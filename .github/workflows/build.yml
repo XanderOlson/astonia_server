@@ -2,8 +2,6 @@ name: Build
 
 on:
   pull_request:
-  push:
-    branches: [main]
 
 jobs:
   build:
@@ -20,4 +18,4 @@ jobs:
           sudo apt-get install -y git gcc-multilib make lib32z-dev libmysqlclient-dev:i386 mariadb-server
 
       - name: Build with make
-        run: make all
+        run: make build-ninja-debug
